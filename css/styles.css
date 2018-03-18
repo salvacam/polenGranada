@@ -153,7 +153,6 @@ h1 {
 }
 
 .accordion > .expanded > p:not(:first-of-type) {
-  max-height: 10em;
   opacity: 1;
   visibility: visible;
 }
