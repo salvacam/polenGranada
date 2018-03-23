@@ -13,17 +13,6 @@ textarea, input {
 .smooth {
   transition: all .2s; }
 
-.jumbotron {
-  max-width: 800px;
-  min-width: 250px;
-  margin: 0 auto;
-  text-align: center; }
-
-.container {
-  margin: 0 20px;
-  width: auto;
-  text-align: left; }
-
 .btn {
   text-decoration: none; }
 
@@ -68,22 +57,6 @@ textarea, input {
 
 h1 {
   font-size: 4em; }
-
-.nav {
-  background: #5ab;
-  color: #eee; }
-
-.nav {
-  min-width: 250px;
-  height: 24px;
-  padding: 11px 0 15px;
-  font-size: 22px;
-  top: 1px; }
-
-@media (max-width: 500px) {
-  .nav {
-    overflow: hidden; }   
-}
 
 
 /************ Spinner ************/
@@ -197,3 +170,4 @@ h1 {
   margin-top: 20px;
   color: #000;
 }
+
