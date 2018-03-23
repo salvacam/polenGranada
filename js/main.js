@@ -25,6 +25,11 @@ let app = {
     app.closeModalButton.addEventListener('click', app.closeModal);    
     app.infoButton.addEventListener('click', app.showInfo);
 
+    if(localStorage.getItem('_polen_granada')) {
+      let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
+      app.showDataConnection(dataConnection.data);
+      app.infoButton.classList.remove('hide');
+    }
     app.getData();
 
     //Guardar service worker
@@ -78,7 +83,8 @@ let app = {
     }
   },
 
-  showLastData: function(){
+  showLastData: function(){   
+    app.spinnerDiv.classList.add('hide');
     app.showModal("Error conexión, se muestran los últimos datos obtenidos");    
     let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
     app.updateButton.classList.remove('hide');
@@ -96,6 +102,7 @@ let app = {
 
   getData: function() {
     app.spinnerDiv.classList.remove('hide');
+    app.updateButton.classList.add('hide');
 
     try {
       fetch(app.URL_PROXY)
