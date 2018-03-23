@@ -1,11 +1,11 @@
 var cacheName = 'polen-v0.1.02';
 
 var filesToCache = [
-  '/',
-  '/index.html',
-  '/js/main.js',
-  '/css/styles.css',  
-  '/img/favicon.ico'
+  './',
+  './index.html',
+  './js/main.js',
+  './css/styles.css',  
+  './img/favicon.ico'
 ];
 
 self.addEventListener('install', function(e) {
