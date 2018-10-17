@@ -23,7 +23,7 @@
         "sizes": "512x512",
         "type": "image/png"
       }],
-  "start_url": ".",
+  "start_url": "https://salvacam.js.org/polenGranada/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#5ab",
