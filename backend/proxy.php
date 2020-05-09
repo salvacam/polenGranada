@@ -1,9 +1,8 @@
 <?php
 
-/*
 header('Content-Type: text/plain; charset=utf-8');
 header("access-control-allow-origin: *");
-*/
+
 
 require './src/JsonDB.class.php';
 
@@ -73,6 +72,6 @@ if ($fechaHoraLimite > $fechaHoraActual) {
 	file_put_contents($img, file_get_contents("https:" . html_entity_decode($result)));
 	
 	http_response_code(200);
-	echo html_entity_decode($result);/
+	echo html_entity_decode($result);
 
 }
