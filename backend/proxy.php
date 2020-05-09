@@ -19,14 +19,14 @@ error_reporting(E_ALL);
 $now = new DateTime();
 $fechaHoraActual = $now->getTimestamp();
 
-$datosGuardados = $db->select("data", "id", 0);
+$datosGuardados = $db->selectAll("data");
 if (count($datosGuardados) > 0) {
 		
 	$fechaHoraLimite = $datosGuardados[0]["DateTime"] + 18000; //Five hours, 60 seg * 60 min * 5 hour
 	if ($fechaHoraLimite > $fechaHoraActual) {
-		// Devolver lo guardado		
+		// Devolver lo guardado
 		http_response_code(200);
-		echo json_encode($datosGuardados[0]["SRC"]);
+		echo html_entity_decode($datosGuardados[0]["SRC"]);
 		die();
 	}
 }
@@ -57,7 +57,9 @@ $result = substr($page, $initPosition + $longTextSearch, $endPost - ($initPositi
 
 // Guardar fecha y hora cuando se realiza la llamada
 $lista = array('ID'=>0, 'SRC'=> $result, 'DateTime'=>$fechaHoraActual);
+
 // Guardar resultado procesado de la llamada
+$db -> deleteAll ( "data" );
 $db->insert("data", $lista, true);
 
 http_response_code(200);

@@ -41,7 +41,7 @@ let app = {
   },
 
   showDataConnection: function(data) {
-    app.infoImg.src = data;
+    app.infoImg.src = "https:" + data;
     app.infoButton.classList.remove('hide');
   },
 
