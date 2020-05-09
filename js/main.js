@@ -30,7 +30,7 @@ let app = {
     }
     */
     app.getData();
-/*
+    
     //Guardar service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -39,7 +39,6 @@ let app = {
           //console.log('Service Worker Registered');
         });
     }
-    */
   },
 
   showDataConnection: function(data) {
