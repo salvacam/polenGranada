@@ -22,15 +22,14 @@ let app = {
     app.closeModalButton.addEventListener('click', app.closeModal);    
     app.infoButton.addEventListener('click', app.showInfo);
 
-/*
     if(localStorage.getItem('_polen_granada')) {
       let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
       app.showDataConnection(dataConnection.data);
       app.infoButton.classList.remove('hide');
     }
-    */
+
     app.getData();
-    
+
     //Guardar service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
