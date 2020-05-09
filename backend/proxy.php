@@ -3,11 +3,33 @@
 header('Content-Type: text/plain; charset=utf-8');
 header("access-control-allow-origin: *");
 
+require './src/JsonDB.class.php';
+
+date_default_timezone_set('Europe/Madrid');
+
+$db = new JsonDB("./db/");
+
 /*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
+
+// Comprobar si la ciudad esta cacheada en menos de 5horas
+$now = new DateTime();
+$fechaHoraActual = $now->getTimestamp();
+
+$datosGuardados = $db->select("data", "id", 0);
+if (count($datosGuardados) > 0) {
+		
+	$fechaHoraLimite = $datosGuardados[0]["DateTime"] + 18000; //Five hours, 60 seg * 60 min * 5 hour
+	if ($fechaHoraLimite > $fechaHoraActual) {
+		// Devolver lo guardado		
+		http_response_code(200);
+		echo json_encode($datosGuardados[0]["SRC"]);
+		die();
+	}
+}
 
 //$urlFacebook = "https://www.facebook.com/Informaci%C3%B3n-Polen-Granada-128331124035311/";
 $urMeteoblue = "https://www.meteoblue.com/es/tiempo/outdoorsports/airquality/granada_españa_2517117";
@@ -32,6 +54,11 @@ $initPosition = strpos($page, $textSearch, $starPosition);
 $endPost = strpos($page, "'", $initPosition + $longTextSearch);
 
 $result = substr($page, $initPosition + $longTextSearch, $endPost - ($initPosition + $longTextSearch));
+
+// Guardar fecha y hora cuando se realiza la llamada
+$lista = array('ID'=>0, 'SRC'=> $result, 'DateTime'=>$fechaHoraActual);
+// Guardar resultado procesado de la llamada
+$db->insert("data", $lista, true);
 
 http_response_code(200);
 echo html_entity_decode($result);
