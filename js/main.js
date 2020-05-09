@@ -4,18 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let app = {  
   URL_PROXY: 'https://calcicolous-moonlig.000webhostapp.com/polen/proxy.php',
-  //URL_PROXY: 'http://localhost:8000/proxy.php',
+  //URL_PROXY: 'http://localhost:1234/proxy.php',
 
   spinnerDiv: document.getElementById('spinnerDiv'),
-  dataDiv: document.getElementById('dataDiv'),
   updateButton: document.getElementById('update'),
+  infoImg: document.getElementById('infoImg'),  
 
   myModal: document.getElementById('myModal'),
   closeModalButton: document.getElementById('close-modal'),
   modalText: document.getElementById('modal-text'),
-  
-  accordion: undefined,
-
 
   infoButton: document.getElementById('infoButton'),
   responsibility: document.getElementById('responsibility'),
@@ -25,13 +22,15 @@ let app = {
     app.closeModalButton.addEventListener('click', app.closeModal);    
     app.infoButton.addEventListener('click', app.showInfo);
 
+/*
     if(localStorage.getItem('_polen_granada')) {
       let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
       app.showDataConnection(dataConnection.data);
       app.infoButton.classList.remove('hide');
     }
+    */
     app.getData();
-
+/*
     //Guardar service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -40,37 +39,12 @@ let app = {
           //console.log('Service Worker Registered');
         });
     }
+    */
   },
 
   showDataConnection: function(data) {
-    app.dataDiv.innerHTML = data;
-    app.makeAccordion();
-  },
-
-  makeAccordion: function() {
-    app.accordion = document.getElementById('accordion');
-    let targets = app.accordion.querySelectorAll('section > p:first-of-type');
-    let i = 0;
-    let currentTarget;
-    let expandedSection = true;
-
-    for (i = 0; i < targets.length; i++) {
-      targets[i].addEventListener('click', function () {
-        expandedSection = true;
-        if (currentTarget == this.parentNode && currentTarget.classList.contains("expanded")) {
-          expandedSection = false;
-        }
-        
-        if (currentTarget) {
-          currentTarget.classList.remove("expanded");
-        }
-        
-        if (expandedSection) {
-          currentTarget = this.parentNode;
-          currentTarget.classList.add("expanded");
-        }
-      }, false);
-    }
+    app.infoImg.src = data;
+    app.infoButton.classList.remove('hide');
   },
 
   showInfo: function() {
