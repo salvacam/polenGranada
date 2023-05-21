@@ -1,4 +1,4 @@
-var cacheName = 'polen-v0.1.06';
+var cacheName = 'polen-v0.1.07';
 
 var filesToCache = [
   './',
