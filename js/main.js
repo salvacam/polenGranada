@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 let app = {  
-  URL_PROXY: 'https://calcicolous-moonlig.000webhostapp.com/polen/proxy.php',
+  URL_PROXY: 'https://calcicolous-moonlig1.000webhostapp.com/polen/proxy.php',
   //URL_PROXY: 'http://localhost:1234/proxy.php',
 
   spinnerDiv: document.getElementById('spinnerDiv'),
