@@ -75,7 +75,7 @@ let app = {
 
   getData: function() {
     app.spinnerDiv.classList.remove('hide');
-    app.updateButton.classList.add('hide');
+    //app.updateButton.classList.add('hide');
 
     try {
       fetch(app.URL_PROXY)
@@ -92,7 +92,7 @@ let app = {
           response.text()
           .then(function(string) {
 
-            app.updateButton.classList.add('hide');
+            //app.updateButton.classList.add('hide');
 
             localStorage.setItem('_polen_granada', JSON.stringify({"data": string}));
             
