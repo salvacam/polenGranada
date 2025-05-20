@@ -56,7 +56,7 @@ let app = {
       fetch(app.URL_PROXY)
       .then(
         function(response) {
-          if (response.status === 200) {
+          if (response.status !== 200) {
             //console.log('Status Code: ' + response.status);  
             app.showLastData();
             return;
