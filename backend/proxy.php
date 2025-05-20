@@ -26,7 +26,7 @@ $fechaHoraLimite = 0;
 
 if (count($datosGuardados) > 0) {
 		
-	$fechaHoraLimite = $datosGuardados[0]["DateTime"] + 18000; //Five hours, 60 seg * 10 min * 5 hour
+	$fechaHoraLimite = $datosGuardados[0]["DateTime"] + 18000; //Five hours, 60 seg * 60 min * 5 hour
 }
 
 if ($fechaHoraLimite > $fechaHoraActual) {
@@ -39,6 +39,7 @@ if ($fechaHoraLimite > $fechaHoraActual) {
 
 	//$urlFacebook = "https://www.facebook.com/Informaci%C3%B3n-Polen-Granada-128331124035311/";
 	$urMeteoblue = "https://www.meteoblue.com/es/tiempo/outdoorsports/airquality/granada_españa_2517117";
+	//https://my.meteoblue.com/visimage/meteogram_airquality?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Granada&iso2=es&lat=37.1882&lon=-3.60667&asl=689&tz=Europe%2FMadrid&dpi=72&apikey=5838a18e295d&lang=es&ts=1743457537&sig=9cbc2bc543af783f4fd89066a005a43e
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $urMeteoblue);

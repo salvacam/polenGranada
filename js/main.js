@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 let app = {  
-  //URL_PROXY: 'https://salvacam.kesug.com/polen/proxy.php',  
   //URL_PROXY: 'http://localhost:1234/proxy.php',
   URL_PROXY: 'https://salvacam.x10.mx/polen/backend/proxy.php',
   URL_IMG: 'https://salvacam.x10.mx/polen/backend/img/data.png',
@@ -14,21 +13,14 @@ let app = {
 
   myModal: document.getElementById('myModal'),
   closeModalButton: document.getElementById('close-modal'),
-  modalText: document.getElementById('modal-text'),
 
   infoButton: document.getElementById('infoButton'),
   responsibility: document.getElementById('responsibility'),
 
   init: function() {
     app.updateButton.addEventListener('click', app.getData);
-    app.closeModalButton.addEventListener('click', app.closeModal);    
+    app.closeModalButton.addEventListener('click', ()=>{ app.myModal.style.display = "none"; });    
     app.infoButton.addEventListener('click', app.showInfo);
-
-    //if(localStorage.getItem('_polen_granada')) {
-      //let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
-      //app.showDataConnection(dataConnection.data);
-      //app.infoButton.classList.remove('hide');
-    //}
 
     app.getData();
 
@@ -42,11 +34,6 @@ let app = {
     }
   },
 
-  //showDataConnection: function(data) {
-    //app.infoImg.src = "https:" + data;
-    //app.infoButton.classList.remove('hide');
-  //},
-
   showInfo: function() {
     if (app.responsibility.classList.contains('hide')) {
       app.responsibility.classList.remove('hide');
@@ -59,58 +46,23 @@ let app = {
 
   showLastData: function(){   
     app.spinnerDiv.classList.add('hide');
-    //app.showModal("Error conexión, se muestran los últimos datos obtenidos");    
-    //let dataConnection = JSON.parse(localStorage.getItem('_polen_granada'));
-    //app.updateButton.classList.remove('hide');
-    //app.showDataConnection(dataConnection.data);
-
-    app.modalText.innerHTML = "Error conexión, se muestran los últimos datos obtenidos";
     app.myModal.style.display = "block";
-  },
-
-/*
-  showModal: function(text) {
-    app.modalText.innerHTML = text;
-    app.myModal.style.display = "block";
-  },
-*/
-
-  closeModal: function() {
-    app.myModal.style.display = "none";
   },
 
   getData: function() {
     app.spinnerDiv.classList.remove('hide');
-    //app.updateButton.classList.add('hide');
 
     try {
       fetch(app.URL_PROXY)
       .then(
         function(response) {
-
-          app.spinnerDiv.classList.add('hide');
-          if (response.status !== 200) {
-            //console.log('Looks like there was a problem. Status Code: ' + response.status);  
+          if (response.status === 200) {
+            //console.log('Status Code: ' + response.status);  
             app.showLastData();
             return;
-          }
-          
-          app.infoImg.src = app.URL_IMG + '?t=' + new Date().getTime(); 
-          
-          /*
-          response.text()
-          .then(function(string) {
-
-            //app.updateButton.classList.add('hide');
-
-            //localStorage.setItem('_polen_granada', JSON.stringify({"data": string}));
-            
-            //app.showDataConnection(string);
-          })
-          .catch(function(err){
-            app.showLastData();
-          })
-          */
+          }          
+          app.spinnerDiv.classList.add('hide');
+          app.infoImg.src = app.URL_IMG + '?t=' + new Date().getTime();           
         }
       )
       .catch(function(err) {
