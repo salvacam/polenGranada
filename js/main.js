@@ -30,7 +30,7 @@ let app = {
 
     app.getData();
 
-    var darkModeBool = localStorage.getItem("_tiempo_dark");
+    var darkModeBool = localStorage.getItem("_polen_dark");
     if (darkModeBool != null && darkModeBool == "true") {
       app.bodyDiv.classList.add('dark');
       app.darkModeButton.checked = true;
@@ -60,7 +60,7 @@ let app = {
       app.infoImg.classList.add('dark');
     }
 
-    localStorage.setItem("_tiempo_dark", darkModeBool);
+    localStorage.setItem("_polen_dark", darkModeBool);
   },
 
   showInfo: function() {
