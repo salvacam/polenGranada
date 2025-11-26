@@ -41,6 +41,10 @@
   			#height: auto;
   		}
 
+  		.infoImg.dark {
+  			filter: invert(100%);
+  		}
+
   		#dataDiv{
 		    max-height: 170px;
     		overflow-x: scroll;
@@ -48,6 +52,7 @@
     		display: flex;
     		align-items: flex-end;
   		}
+  		body.dark{background:#000;color:#fff}
   	</style>
 
 	<link rel="icon" href="./img/favicon.ico">
@@ -60,7 +65,7 @@
     <meta name="author" content="Salvador Camacho" />
 </head>
 
-<body>
+<body id="body">
 	<nav class="nav">
 		<div class="container title">Polen Granada</div>
 	</nav>
@@ -89,6 +94,13 @@
 		</div>
 
 		<div id="responsibility" class="container infoText hide">
+            <br>
+                <label class="checkbox">Modo oscuro
+                  <input type="checkbox" name="darkMode" id="darkMode">
+                  <span class="checkmark"></span>
+                </label>
+            <br>
+
 			<p>Aplicación para consultar la Información del Polen en Granada.</p>
 			
 			<p>La aplicación necesita conexión a internet para obtener la información.</p>

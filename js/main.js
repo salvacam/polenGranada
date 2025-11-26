@@ -17,12 +17,25 @@ let app = {
   infoButton: document.getElementById('infoButton'),
   responsibility: document.getElementById('responsibility'),
 
+  darkModeButton: document.getElementById('darkMode'),
+  bodyDiv: document.getElementById('body'),
+  infoImg: document.getElementById('infoImg'),
+
   init: function() {
     app.updateButton.addEventListener('click', app.getData);
     app.closeModalButton.addEventListener('click', ()=>{ app.myModal.style.display = "none"; });    
     app.infoButton.addEventListener('click', app.showInfo);
 
+    app.darkModeButton.addEventListener('change', app.ChangeDarkMode);
+
     app.getData();
+
+    var darkModeBool = localStorage.getItem("_tiempo_dark");
+    if (darkModeBool != null && darkModeBool == "true") {
+      app.bodyDiv.classList.add('dark');
+      app.darkModeButton.checked = true;
+      app.infoImg.classList.add('dark');
+    }
 
     //Guardar service worker
     if ('serviceWorker' in navigator) {
@@ -32,6 +45,22 @@ let app = {
           //console.log('Service Worker Registered');
         });
     }
+  },
+
+  ChangeDarkMode: function() {
+    var darkModeBool = false;
+    
+    if (app.bodyDiv.classList.contains('dark')) {
+      app.bodyDiv.classList.remove('dark');
+      darkModeBool = false;
+      app.infoImg.classList.remove('dark');
+    } else {
+      app.bodyDiv.classList.add('dark');
+      darkModeBool = true;
+      app.infoImg.classList.add('dark');
+    }
+
+    localStorage.setItem("_tiempo_dark", darkModeBool);
   },
 
   showInfo: function() {
